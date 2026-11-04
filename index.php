@@ -33,16 +33,33 @@
         </div>
 
     <?php
-    
-        if(isset($_POST['login-btn'])){
-            $username = $_POST['username'];
-            $password = $_POST['password'];
 
-            $query = "select * from customer_table where username = '$username' and password = '$password'";
-            $result = mysqli_query($connection, $query);
+    if(isset($_POST['login-btn'])){
 
-            if(mysqli_num_rows($result) >0){
-                $row = mysqli_fetch_assoc($result);
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        $query = "SELECT * FROM customer_table 
+                  WHERE username = '$username' 
+                  AND password = '$password'";
+
+        $result = mysqli_query($connection, $query);
+
+        if(mysqli_num_rows($result) > 0){
+
+            $row = mysqli_fetch_assoc($result);
+
+            // Check if account is approved
+            if($row['status'] == 'denied'){
+
+                echo "<script>
+                        alert('Your account is waiting for admin approval.');
+                        window.location.href = 'index.php';
+                      </script>";
+                exit();
+
+            } else {
+
                 $_SESSION['id'] = $row['id'];
                 $_SESSION['f_name'] = $row['f_name'];
                 $_SESSION['l_name'] = $row['l_name'];
@@ -50,11 +67,24 @@
                 $_SESSION['logged-in'] = true;
                 $_SESSION['status'] = 0;
 
+                unset($_SESSION['purchase_id']);
+
                 header("Location: homepage.php");
                 exit();
 
             }
+
+        } else {
+
+            echo "<script>
+                    alert('Incorrect username or password.');
+                    window.location.href = 'index.php';
+                  </script>";
+            exit();
+
         }
-    ?>
+    }
+
+?>
 
 </body>
