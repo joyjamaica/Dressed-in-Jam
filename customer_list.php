@@ -13,6 +13,13 @@
 <?php include('header.php'); ?>
 
 <body>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <?php include('sidebar.php'); ?>
+
+        <main class="col-lg-10 col-md-9 p-4">
     
 <h1 class = "text-center text-success" >Customer List </h1>
 
@@ -70,11 +77,9 @@
  </table>
  </form>
 
- <form class = "container">
-     <td><a href = "register.php" name = "add_customer" class = "btn btn-primary">ADD</td>
-</form>
-
-
+</main>
+</div>
+</div>  
 </body>
 
 </html>
