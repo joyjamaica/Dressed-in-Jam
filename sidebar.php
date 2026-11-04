@@ -16,21 +16,31 @@
                     </a>
                 </li>
 
+                <?php
+                if($_SESSION['role'] == 'customer'){?>
                 <li class="nav-item mb-2">
                     <a href="cart_list.php" class="nav-link text-dark">
                         🛒 My Cart
                     </a> 
                 </li>
+                <?php
+                }
+                ?>
 
+                <?php
+                if($_SESSION['role'] == 'customer'){?>
                 <li class="nav-item mb-2">
                     <a href="my_purchases.php" class="nav-link text-dark">
                         <i class="bi bi-bag-check-fill me-2"></i>
                         My Purchases
                     </a>
                 </li>
+                <?php
+                }
+                ?>
 
                 <?php
-                if($_SESSION['role'] == "admin"){?>
+                if($_SESSION['role'] == "owner"){?>
                     <li class="nav-item mb-2">
                         <a href="insert_product.php" class="nav-link text-dark">
                             🛒 Add Product
@@ -39,12 +49,16 @@
                 <?php
                 }
                 ?>
+
+                <?php
+                if($_SESSION['role'] == 'admin'){?>
                 <li class="nav-item mb-2">
-                    <a href="cart_list.php" class="nav-link text-dark">
-                        🛒 Add to Cart
+                    <a href="customer_list.php" class="nav-link text-dark">
+                        🛒 User List
                     </a>
                 </li>
-
+                <?php
+                }?>
                 <?php
                 if($_SESSION['role'] == "admin"){?>
                 <li class="nav-item mb-2">
