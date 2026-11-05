@@ -50,7 +50,7 @@
             $row = mysqli_fetch_assoc($result);
 
             // Check if account is approved
-            if($row['status'] == 'denied'){
+            if($row['status'] != 'Approved'){
 
                 echo "<script>
                         alert('Your account is waiting for admin approval.');
